@@ -30,6 +30,16 @@ namespace ProjetEcosyst
             //    i--;
             //}
 
+            //Brebis breb = new Brebis(0, 0, 10, 10, 0, 5, 1, 2, "Male");
+            //Herbe herb = new Herbe(3, 0, 1, 1, 1, 1, 1);
+
+            //List<Entity> plants = new List<Entity>();
+
+            //plants.Add(herb);
+            //Console.WriteLine(breb.x);
+            //breb.Hunt(plants);
+            //Console.WriteLine(breb.x);
+            //breb.Hunt(plants);
 
 
         }

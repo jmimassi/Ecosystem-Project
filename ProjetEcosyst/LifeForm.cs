@@ -8,7 +8,7 @@ namespace ProjetEcosyst
 {
     public abstract class LifeForm : Entity
     {
-        protected int HP;
+        public int HP;
         protected int EP;
         protected int age;
         protected LifeForm(int x, int y, int HP, int EP, int age) : base(x, y)
@@ -49,7 +49,6 @@ namespace ProjetEcosyst
         }
 
         public abstract void Reproduce();
-        public abstract void Eat(Entity food);
 
     }
 }

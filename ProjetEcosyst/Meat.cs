@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace ProjetEcosyst
 {
-    internal class Meat : Entity
+    public class Meat : Entity
     {
         public int age;
-        public Meat(int x,int y, int age) : base(x,y)
+        public Meat(int x,int y) : base(x,y)
         {
-            this.age = age;
+            this.age = 0;
+        }
+
+        public void Age()
+        {
+            this.age++;
         }
 
     }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjetEcosyst
 {
-    internal class Simulation
+    public class Simulation
     {
-        public int speedOfLife;
-        public List<Entity> listOfEntities = new List<Entity>();
+        private int speedOfLife;
+        private List<Entity> listOfEntities = new List<Entity>();
 
         //public void Run()
         //{
@@ -40,6 +40,29 @@ namespace ProjetEcosyst
             return listOfNearbyEntities;
         }
 
+        public void CheckDie(LifeForm ent)
+        {
+            if ( ent.HP == 0)
+            {
+                int x = ent.x;
+                int y = ent.y;
+                try
+                {
+                    
+                }
+                catch
+                {
+
+                }
+                DestroyObject(ent);
+            }
+        }
+
+        public void DestroyObject(Entity ent)
+        {
+            int index = this.listOfEntities.IndexOf(ent);
+            this.listOfEntities.RemoveAt(index);
+        }
 
         public void AddEntity(Entity entité)
         {
