@@ -70,14 +70,16 @@ namespace ProjetEcosyst
 
 
             }
-
+            Console.WriteLine("Se déplace en {}, {}",this.x,this.y);
         }
 
-        public abstract void Hunt(List<Entity> List);
-
-        public override void Reproduce()
+        public void Fecond()
         {
-            throw new NotImplementedException();
+
         }
+
+
+        
+
     }
 }

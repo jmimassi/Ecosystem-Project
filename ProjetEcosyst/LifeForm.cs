@@ -9,8 +9,8 @@ namespace ProjetEcosyst
     public abstract class LifeForm : Entity
     {
         public int HP;
-        protected int EP;
-        protected int age;
+        public int EP;
+        public int age;
         protected LifeForm(int x, int y, int HP, int EP, int age) : base(x, y)
         {
             this.HP = HP;
@@ -24,10 +24,6 @@ namespace ProjetEcosyst
             this.EP++;
         }
 
-        public virtual void loseE()
-        {
-            this.EP--;
-        }
 
         public virtual int getHP()
         {
@@ -48,7 +44,8 @@ namespace ProjetEcosyst
             return this.age;
         }
 
-        public abstract void Reproduce();
+        
+        
 
     }
 }

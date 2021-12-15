@@ -15,7 +15,7 @@ namespace ProjetEcosyst
         {
         }
 
-        public override void Hunt(List<Entity> List)
+        public void Hunt(List<Entity> List,Simulation sim)
         {
             List<Plant> plants = new List<Plant>();
 
@@ -40,12 +40,13 @@ namespace ProjetEcosyst
 
                 if (Math.Sqrt(pythagore) <= this.ContactRadius)
                 {
-                    // Eat(plants[0]);
-                    Console.WriteLine("Plante Mangée");
+                    this.Eat(plants[0],sim);
+                    Console.WriteLine("La plante se situant en {0}, {1} a été mangée", plants[0].x, plants[0].y);
                 }
                 else
                 {
                     Move(plants[0]);
+                    Console.WriteLine("L'herbivore se déplace vers la plante se situant en {0}, {1}", plants[0].x, plants[0].y);
                 }
 
 
@@ -54,6 +55,13 @@ namespace ProjetEcosyst
             {
                 Move(null);
             }
+        }
+
+        public void Eat(Plant plant, Simulation sim)
+        {
+            this.HP += 2;
+            sim.DestroyObject(plant);
+
         }
     }
 }

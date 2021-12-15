@@ -27,7 +27,7 @@ namespace ProjetEcosyst
 
         }
 
-        public override void Hunt(List<Entity> ListOfNearbyEntitiesForAnimal)
+        public virtual void Hunt(List<Entity> ListOfNearbyEntitiesForAnimal, Simulation sim)
         {
 
             int count = ListOfNearbyEntitiesForAnimal.Count; //2 listes une de viande, une d'hérbivore. 
@@ -37,10 +37,10 @@ namespace ProjetEcosyst
             for (int i = 0; i < count; i++)
             {
                 try {
-                    if (ListOfNearbyEntitiesForAnimal[i].GetType() == typeof(Meat))
-                    {
-                        listOfNearbyMeat.Add((Meat)ListOfNearbyEntitiesForAnimal[i]);
-                    }
+                    
+                    Meat meat = (Meat)ListOfNearbyEntitiesForAnimal[i];
+                    listOfNearbyMeat.Add(meat);
+                   
                 }
                 catch
                 {
@@ -48,10 +48,8 @@ namespace ProjetEcosyst
                 }
                 try
                 {
-                    if (ListOfNearbyEntitiesForAnimal[i].GetType() == typeof(Herbivore))
-                    {
-                        listOfNearbyHerbivores.Add((Herbivore)ListOfNearbyEntitiesForAnimal[i]);
-                    }
+                    Herbivore herbi = (Herbivore)ListOfNearbyEntitiesForAnimal[i];
+                    listOfNearbyHerbivores.Add(herbi);
                 }
                 catch { }
 
@@ -69,7 +67,7 @@ namespace ProjetEcosyst
 
                 if(Math.Sqrt(pythagore) < this.ContactRadius)
                 {
-                   Eat(listOfNearbyMeat[0]);
+                   Eat(listOfNearbyMeat[0],sim);
                 }
                 else
                 {
@@ -103,10 +101,16 @@ namespace ProjetEcosyst
 
         }
 
+        public void Eat(Meat meat, Simulation sim)
+        {
+            this.EP += 2;
+            sim.DestroyObject(meat);
+        }
 
 
- 
-        
+
+
+
 
 
 
