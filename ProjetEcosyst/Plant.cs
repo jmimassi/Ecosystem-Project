@@ -37,12 +37,12 @@ namespace ProjetEcosyst
             Random rand = new Random();
             int xe = rand.next(0,SeedingRadius);
             int ye = rand.next(0,SeedingRadius);
-            int distance = Math.Sqrt((xe - this.x)*(xe - this.x)+(ye - this.y)*(ye - this.y))
+            int distance = Math.Sqrt((xe - this.x)*(xe - this.x)+(ye - this.y)*(ye - this.y));
             while (distance > SeedingRadius)
             {
                 int xe = rand.next(0,SeedingRadius);
                 int ye = rand.next(0,SeedingRadius);
-                int distance = Math.Sqrt((xe - this.x)*(xe - this.x)+(ye - this.y)*(ye - this.y))
+                int distance = Math.Sqrt((xe - this.x)*(xe - this.x)+(ye - this.y)*(ye - this.y));
             }
 
             Plant child = new Plant(xe,ye,this.HP,this.EP,0,this.RootRadius,this.SeedingRadius);

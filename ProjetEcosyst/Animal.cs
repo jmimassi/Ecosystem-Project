@@ -75,7 +75,7 @@ namespace ProjetEcosyst
             Console.WriteLine("Se déplace en {}, {}",this.x,this.y);
         }
 
-        public void override grow()
+        public void grow()
         {
             this.age++;
             if (pregnant == true)
