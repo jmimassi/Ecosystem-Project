@@ -44,8 +44,20 @@ namespace ProjetEcosyst
             return this.age;
         }
 
-        
-        
+        public int SortByDistance(Entity ent)
+        {
+            int distancex = ent.x - this.x;
+            int distancey = ent.y - this.y;
+
+            int pythagore = distancex * distancex + distancey * distancey;
+            return Math.Sqrt(pythagore);
+        }
+
+        public void grow()
+        {
+            this.age++;
+        }
+
 
     }
 }

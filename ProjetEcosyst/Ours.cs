@@ -15,9 +15,28 @@ namespace ProjetEcosyst
             { 
             }
 
-        public void Reproduce(Simulation sim)
-        {
 
+        public void Reproduce(Simulation sim,Ours ours)
+        {
+            if (this.Sex == "Femelle")
+            {
+                if (ours.Sex == "Mâle")
+                {   
+                    if(this.pregnant == false)
+                    {
+                    this.pregnant == true;
+                    this.pregnancy == 0;
+                    }
+                    
+                }
+            }
+            else
+            {
+                if (ours.Sex == "Femelle")
+                {
+                    Fecond(ours);
+                }
+            }
 
         }
 
@@ -25,107 +44,40 @@ namespace ProjetEcosyst
 
         public override void Hunt(List<Entity> ListOfNearbyEntitiesForAnimal, Simulation sim)
         {
-            Console.WriteLine(" ");
-            int count = ListOfNearbyEntitiesForAnimal.Count; //2 listes une de viande, une d'hérbivore. 
-            List<Meat> listOfNearbyMeat = new List<Meat>();
-            List<Herbivore> listOfNearbyHerbivores = new List<Herbivore>();
-            List<Ours> listOfNearbyPartners = new List<Ours>();
-
-            for (int i = 0; i < count; i++)
+            base.Hunt(ListOfNearbyEntitiesForAnimal,sim);
+            count = ListOfNearbyEntitiesForAnimal.length;
+            List<Ours> listeOfNearbyBears = new List<Ours>();
+             for (int i = 0; i < count; i++)
             {
-                try
+                
+                if (ListOfNearbyEntitiesForAnimal[i].GetType() == typeof(Ours))
                 {
-
-                    Meat meat = (Meat)ListOfNearbyEntitiesForAnimal[i];
-                    listOfNearbyMeat.Add(meat);
-
+                    listeOfNearbyBears.add((Ours) ListOfNearbyEntitiesForAnimal[i]);
                 }
-                catch
-                {
-                }
-                try
-                {
-                    Herbivore herbi = (Herbivore)ListOfNearbyEntitiesForAnimal[i];
-                    listOfNearbyHerbivores.Add(herbi);
-                }
-                catch { }
-                try
-                {
-                    Ours ours = (Ours) ListOfNearbyEntitiesForAnimal[i];
-                    if (ours.Sex != this.Sex) {
-                        listOfNearbyPartners.Add(ours);
-                    }
-                   
-                }
-                catch { }
-
-
-
-
+                
             }
 
-            if (listOfNearbyMeat.Count > 0)
+             if (listeOfNearbyBears.length > 0)
             {
-                int distancex = listOfNearbyMeat[0].x - this.x;
-                int distancey = listOfNearbyMeat[0].y - this.y;
+                listeOfNearbyBears.Sort(Ours.SortByDistance());
+                int distancex = listOfNearbyBears[0].x - this.x;
+                int distancey = listOfNearbyBears[0].y - this.y;
 
                 int pythagore = distancex * distancex + distancey * distancey;
 
-                if (Math.Sqrt(pythagore) < this.ContactRadius)
+                if(Math.Sqrt(pythagore) < this.ContactRadius)
                 {
-                    Console.WriteLine("L'ours mange la viande se situant en {0},{1}", listOfNearbyMeat[0].x, listOfNearbyMeat[0].y);
-                    Eat(listOfNearbyMeat[0], sim);
+                   Reproduce(sim, listeOfNearbyBears[0]);
                 }
                 else
                 {
-                    Console.WriteLine("L'ours se déplace vers la viande se situant en {0},{1}", listOfNearbyMeat[0].x, listOfNearbyMeat[0].y);
-                    Move(listOfNearbyMeat[0]);
+                    Move(listOfNearbyBears[0]);
                 }
             }
-
-            else if (listOfNearbyHerbivores.Count > 0)
-            {
-                int distancex = listOfNearbyHerbivores[0].x - this.x;
-                int distancey = listOfNearbyHerbivores[0].y - this.y;
-
-                int pythagore = distancex * distancex + distancey * distancey;
-
-                if (Math.Sqrt(pythagore) < this.ContactRadius)
-                {
-                    Console.WriteLine("L'ours attaque l'herbivore se situant en {0},{1}", listOfNearbyHerbivores[0].x, listOfNearbyHerbivores[0].y);
-                    Attack(listOfNearbyHerbivores[0]);
-                }
-                else
-                {
-                    Console.WriteLine("L'ours se déplace vers l'herbivore se situant en {0},{1}", listOfNearbyHerbivores[0].x, listOfNearbyHerbivores[0].y);
-                    Move(listOfNearbyHerbivores[0]);
-                }
-            }
-
-            //else if (listOfNearbyPartners.Count > 0)
-            //{
-            //    int distancex = listOfNearbyPartners[0].x - this.x;
-            //    int distancey = listOfNearbyPartners[0].y - this.y;
-
-            //    int pythagore = distancex * distancex + distancey * distancey;
-
-            //    if (Math.Sqrt(pythagore) < this.ContactRadius)
-            //    {
-            //        // Reproduice(Simulation sim);
-            //    }
-            //    else
-            //    {
-            //        Move(listOfNearbyHerbivores[0]);
-            //    }
-            //}
-
-
-
-            else
+             else
             {
                 Move(null);
             }
-
         }
     }
 

@@ -8,9 +8,7 @@ namespace ProjetEcosyst
 {
     public abstract class Herbivore : Animal
     {
-        //protected Herbivore(int x, int y, int HP, int EP,int age,int VisionRadius,int ContactRadius, char Sex) : base(x, y, HP, EP, age, VisionRadius, ContactRadius, Sex)
-        //{
-        //}
+       
         protected Herbivore(int x, int y, int HP, int EP, int age, int VisionRadius, int ContactRadius, int speed, string Sex) : base(x, y, HP, EP, age, VisionRadius, ContactRadius, speed, Sex)
         {
         }
@@ -32,6 +30,7 @@ namespace ProjetEcosyst
 
             if (plants.Count > 0)
             {
+                plants.Sort(Plant.SortByDistance());
                 int distancex = plants[0].x - this.x;
                 int distancey = plants[0].y - this.y;
 
@@ -51,10 +50,6 @@ namespace ProjetEcosyst
 
 
             }
-            else
-            {
-                Move(null);
-            }
         }
 
         public void Eat(Plant plant, Simulation sim)
@@ -63,5 +58,9 @@ namespace ProjetEcosyst
             sim.DestroyObject(plant);
 
         }
+
+        
+
+
     }
 }

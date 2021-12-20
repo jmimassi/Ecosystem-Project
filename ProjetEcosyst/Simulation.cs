@@ -86,6 +86,8 @@ namespace ProjetEcosyst
             listOfEntities.Add(entité);
         }
 
+        
+
 
         public void Update(Simulation sim)
         {
@@ -111,8 +113,27 @@ namespace ProjetEcosyst
                     }
                     else
                     {
+                        
                         List<Entity> list = NearbyEntities(ours, listOfEntities);
                         ours.Hunt(list, sim);
+                        if (ours.pregnancy > 5)
+                        {
+                            Random rand = new Random();
+                            int a  = rand.Next(0,1);
+                            if (a == 0)
+                            {
+                                string Sex = "Femelle";
+                            }
+                            else
+                            {
+                                string Sex = "Male";
+                            }
+                            Ours enfant = new Ours(ours.x,ours.y,ours.HP,ours.EP,0,ours.VisionRadius,ours.ContactRadius,ours.speed,Sex);
+                            sim.AddEntity(enfant);
+                            ours.pregnant = false;
+                            ours.pregnancy = 0;
+                        }
+                        ours.grow();
                         ours.EP--;
                     }
                     
@@ -142,6 +163,24 @@ namespace ProjetEcosyst
                     {
                         List<Entity> list = NearbyEntities(breb, listOfEntities);
                         breb.Hunt(list, sim);
+                        if (breb.pregnancy > 5)
+                        {
+                            Random rand = new Random();
+                            int a  = rand.Next(0,1);
+                            if (a == 0)
+                            {
+                                string Sex = "Femelle";
+                            }
+                            else
+                            {
+                                string Sex = "Male";
+                            }
+                            Brebis enfant = new Brebis(breb.x,breb.y,breb.HP,breb.EP,0,breb.VisionRadius,breb.ContactRadius,breb.speed,Sex);
+                            sim.AddEntity(enfant);
+                            breb.pregnant = false;
+                            breb.pregnancy = 0;
+                        }
+                        breb.grow();
                         breb.EP--;
                     }
 
@@ -154,6 +193,12 @@ namespace ProjetEcosyst
                     
                     Herbe herb = (Herbe)entit;
                     List<OrganicMat> list = NearbyOrgaMat(herb, listOfEntities);
+                    if (herb.lastreproduiced > 2)
+                    {
+                        herb.Reproduce(sim);
+                    }
+                    herb.toage();
+
                     if (list.Count > 0)
                     {
                         herb.Eat(list[0], sim);

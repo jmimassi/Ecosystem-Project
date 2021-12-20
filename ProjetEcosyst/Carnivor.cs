@@ -36,7 +36,7 @@ namespace ProjetEcosyst
 
             for (int i = 0; i < count; i++)
             {
-                try {
+                try { //refaire avec des typeof et gettype 
                     
                     Meat meat = (Meat)ListOfNearbyEntitiesForAnimal[i];
                     listOfNearbyMeat.Add(meat);
@@ -44,7 +44,7 @@ namespace ProjetEcosyst
                 }
                 catch
                 {
-                    // cmt faire marcher ? ici tt est des entités
+                    
                 }
                 try
                 {
@@ -60,6 +60,7 @@ namespace ProjetEcosyst
 
             if(listOfNearbyMeat.Count > 0)
             {
+                listOfNearbyMeat.Sort(Entity.SortByDistance());
                 int distancex = listOfNearbyMeat[0].x - this.x;
                 int distancey = listOfNearbyMeat[0].y - this.y;
 
@@ -77,6 +78,7 @@ namespace ProjetEcosyst
 
             else if (listOfNearbyHerbivores.Count > 0)
             {
+                listOfNearbyHerbivores.Sort(LifeForm.SortByDistance());
                 int distancex = listOfNearbyHerbivores[0].x - this.x;
                 int distancey = listOfNearbyHerbivores[0].y - this.y;
 
@@ -90,13 +92,6 @@ namespace ProjetEcosyst
                 {
                     Move(listOfNearbyHerbivores[0]);
                 }
-            }
-
-
-
-            else
-            {
-                Move(null);
             }
 
         }

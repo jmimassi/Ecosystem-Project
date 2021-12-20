@@ -12,6 +12,8 @@ namespace ProjetEcosyst
         public int ContactRadius;
         protected string Sex;
         protected int speed;
+        public bool pregnant;
+        public int pregnancy = 0;
 
         protected Animal(int x, int y, int HP, int EP, int age, int VisionRadius, int ContactRadius, int speed, string Sex) :
         base(x, y, HP, EP, age)
@@ -73,9 +75,34 @@ namespace ProjetEcosyst
             Console.WriteLine("Se déplace en {}, {}",this.x,this.y);
         }
 
-        public void Fecond()
+        public void override grow()
         {
+            this.age++;
+            if (pregnant == true)
+            {
+                pregnancy += 1;
+            }
+        }
 
+        public void Fecond(Animal animal)
+        {
+            if ( animal.sexe == "Femelle")
+            {
+                if (animal.pregnant == true)
+                {
+                Console.WriteLine("L'animal est dejà enceinte");
+                }
+                else
+                {
+                    animal.pregnant = true;
+                    animal.pregnancy = 0;
+                }
+            }
+            else
+            {
+                Console.WriteLine("L'animal est un mâle");
+            }
+            
         }
 
 

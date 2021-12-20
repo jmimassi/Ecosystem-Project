@@ -13,6 +13,66 @@ namespace ProjetEcosyst
 
         }
 
+        public void Reproduce(Simulation sim,Brebis breb)
+        {
+            if (this.Sex == "Femelle")
+            {
+                if (breb.Sex == "Mâle")
+                {   
+                    if(this.pregnant == false)
+                    {
+                    this.pregnant == true;
+                    this.pregnancy == 0;
+                    }
+                    
+                }
+            }
+            else
+            {
+                if (breb.Sex == "Femelle")
+                {
+                    Fecond(breb);
+                }
+            }
 
+        }
+
+        public override void Hunt(List<Entity> ListOfNearbyEntitiesForAnimal, Simulation sim)
+        {
+            base.Hunt(ListOfNearbyEntitiesForAnimal,sim);
+            count = ListOfNearbyEntitiesForAnimal.length;
+            List<Brebis> listeOfNearbyBrebis = new List<Brebis>();
+             for (int i = 0; i < count; i++)
+            {
+                
+                if (ListOfNearbyEntitiesForAnimal[i].GetType() == typeof(Brebis))
+                {
+                    listeOfNearbyBrebis.add((Brebis) ListOfNearbyEntitiesForAnimal[i]);
+                }
+                
+            }
+
+             if (listeOfNearbyBrebis.length > 0)
+            {
+                listeOfNearbyBears.Sort(Brebis.SortByDistance());
+                int distancex = listOfNearbyBrebis[0].x - this.x;
+                int distancey = listOfNearbyBrebis[0].y - this.y;
+
+                int pythagore = distancex * distancex + distancey * distancey;
+
+                if(Math.Sqrt(pythagore) < this.ContactRadius)
+                {
+                   Reproduce(sim, listeOfNearbyBrebis[0]);
+                }
+                else
+                {
+                    Move(listOfNearbyBrebis[0]);
+                }
+            }
+             else
+            {
+                Move(null);
+            }
+        }
     }
 }
