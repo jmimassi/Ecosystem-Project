@@ -189,10 +189,19 @@ namespace ProjetEcosyst
                 catch { }
 
                 try
-                {
+                {   
                     
                     Herbe herb = (Herbe)entit;
                     List<OrganicMat> list = NearbyOrgaMat(herb, listOfEntities);
+                    if (herb.EP == 0)
+                    {
+                        herb.ConvertPVToPE();
+
+                    }
+                    if (CheckDie(herb) == true)
+                    {
+                        DestroyObject(entit);
+                    }
                     if (herb.lastreproduiced > 2)
                     {
                         herb.Reproduce(sim);
@@ -203,6 +212,7 @@ namespace ProjetEcosyst
                     {
                         herb.Eat(list[0], sim);
                     }
+                    herb.EP--;
 
 
                 }

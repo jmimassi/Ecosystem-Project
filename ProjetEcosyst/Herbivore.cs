@@ -54,7 +54,7 @@ namespace ProjetEcosyst
 
         public void Eat(Plant plant, Simulation sim)
         {
-            this.HP += 2;
+            this.EP += 2;
             sim.DestroyObject(plant);
 
         }
