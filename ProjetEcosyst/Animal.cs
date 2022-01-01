@@ -11,7 +11,7 @@ namespace ProjetEcosyst
         public int VisionRadius;
         public int ContactRadius;
         protected string Sex;
-        protected int speed;
+        public int speed;
         public bool pregnant;
         public int pregnancy = 0;
 
@@ -78,15 +78,15 @@ namespace ProjetEcosyst
         public void grow()
         {
             this.age++;
-            if (pregnant == true)
+            if (this.pregnant == true)
             {
-                pregnancy += 1;
+                this.pregnancy += 1;
             }
         }
 
         public void Fecond(Animal animal)
         {
-            if ( animal.sexe == "Femelle")
+            if ( animal.Sex == "Femelle")
             {
                 if (animal.pregnant == true)
                 {

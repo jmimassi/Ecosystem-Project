@@ -16,6 +16,15 @@ namespace ProjetEcosyst
             this.y = y;
         }
 
+        public int CompareTo (Entity ent)
+        {
+            int distancex = ent.x - this.x;
+            int distancey = ent.y - this.y;
+
+            int pythagore = distancex * distancex + distancey * distancey;
+
+            return (int)Math.Sqrt(pythagore);
+        }
      
     }
 }

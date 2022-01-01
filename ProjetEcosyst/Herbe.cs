@@ -18,14 +18,18 @@ namespace ProjetEcosyst
             Random rand = new Random();
             int addx = 0;
             int addy = 0;
+            addx = rand.Next(1, this.SeedingRadius);
+            addy = rand.Next(1, this.SeedingRadius);
             while (Math.Sqrt(addx * addx + addy * addy) > this.SeedingRadius)
             {
                 addx = rand.Next(1, this.SeedingRadius);
                 addy = rand.Next(1, this.SeedingRadius);
             }
             Herbe herbe = new Herbe( this.x+addx, this.y+addy,1,1,1,this.RootRadius, this.SeedingRadius);
+            Console.WriteLine("Une nouvelle herbe apparait en {0},{1}", herbe.x,herbe.y);
             sim.AddEntity( herbe );
         }
+
 
     }
 }

@@ -13,7 +13,7 @@ namespace ProjetEcosyst
         {
         }
 
-        public void Hunt(List<Entity> List,Simulation sim)
+        public virtual void Hunt(List<Entity> List,Simulation sim)
         {
             List<Plant> plants = new List<Plant>();
 
@@ -30,7 +30,7 @@ namespace ProjetEcosyst
 
             if (plants.Count > 0)
             {
-                plants.Sort(Plant.SortByDistance());
+                plants.Sort(); 
                 int distancex = plants[0].x - this.x;
                 int distancey = plants[0].y - this.y;
 

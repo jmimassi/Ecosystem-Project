@@ -8,7 +8,7 @@ namespace ProjetEcosyst
 {
     public abstract class Carnivore : Animal
     {
-        int AttackPoint;
+        public int AttackPoint;
 
         protected Carnivore(int x, int y, int HP, int EP, int age, int VisionRadius, int ContactRadius, int speed,int AttackPoint ,string Sex) : base(x, y, HP, EP, age, VisionRadius, ContactRadius, speed, Sex)
         {
@@ -29,7 +29,7 @@ namespace ProjetEcosyst
 
         public virtual void Hunt(List<Entity> ListOfNearbyEntitiesForAnimal, Simulation sim)
         {
-
+            Console.WriteLine("L'animal commence sa chasse");
             int count = ListOfNearbyEntitiesForAnimal.Count; //2 listes une de viande, une d'hérbivore. 
             List<Meat> listOfNearbyMeat = new List<Meat>();
             List<Herbivore> listOfNearbyHerbivores = new List<Herbivore>();
@@ -60,7 +60,7 @@ namespace ProjetEcosyst
 
             if(listOfNearbyMeat.Count > 0)
             {
-                listOfNearbyMeat.Sort(Entity.SortByDistance());
+                listOfNearbyMeat.Sort();
                 int distancex = listOfNearbyMeat[0].x - this.x;
                 int distancey = listOfNearbyMeat[0].y - this.y;
 
@@ -68,17 +68,19 @@ namespace ProjetEcosyst
 
                 if(Math.Sqrt(pythagore) < this.ContactRadius)
                 {
+                    Console.WriteLine("Mange la viande se trouvant en {0},{1}", listOfNearbyMeat[0].x, listOfNearbyMeat[0].y);
                    Eat(listOfNearbyMeat[0],sim);
                 }
                 else
                 {
+                    Console.WriteLine("Se déplace vers {0},{1}", listOfNearbyMeat[0].x, listOfNearbyMeat[0].y);
                     Move(listOfNearbyMeat[0]);
                 }
             }
 
-            else if (listOfNearbyHerbivores.Count > 0)
+            else if (listOfNearbyHerbivores.Count > 0 && listOfNearbyMeat.Count == 0)
             {
-                listOfNearbyHerbivores.Sort(LifeForm.SortByDistance());
+                listOfNearbyHerbivores.Sort(); // trier par distance
                 int distancex = listOfNearbyHerbivores[0].x - this.x;
                 int distancey = listOfNearbyHerbivores[0].y - this.y;
 
@@ -86,10 +88,12 @@ namespace ProjetEcosyst
 
                 if (Math.Sqrt(pythagore) < this.ContactRadius)
                 {
+                    Console.WriteLine("Attaque l'herbivore se trouvant en {0},{1}", listOfNearbyHerbivores[0].x, listOfNearbyHerbivores[0].y);
                     Attack(listOfNearbyHerbivores[0]);
                 }
                 else
                 {
+                    Console.WriteLine("Se déplace vers l'herbivore se trouvant en {0},{1}", listOfNearbyHerbivores[0].x, listOfNearbyHerbivores[0].y);
                     Move(listOfNearbyHerbivores[0]);
                 }
             }

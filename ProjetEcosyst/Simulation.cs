@@ -116,19 +116,21 @@ namespace ProjetEcosyst
                         
                         List<Entity> list = NearbyEntities(ours, listOfEntities);
                         ours.Hunt(list, sim);
-                        if (ours.pregnancy > 5)
+                        if (ours.pregnancy > 5 && ours.pregnant == true)
                         {
                             Random rand = new Random();
                             int a  = rand.Next(0,1);
+                            string Sex;
                             if (a == 0)
                             {
-                                string Sex = "Femelle";
+                                Sex = "Femelle";
                             }
                             else
                             {
-                                string Sex = "Male";
+                                Sex = "Male";
                             }
-                            Ours enfant = new Ours(ours.x,ours.y,ours.HP,ours.EP,0,ours.VisionRadius,ours.ContactRadius,ours.speed,Sex);
+                            Ours enfant = new Ours(ours.x,ours.y,ours.HP,ours.EP,0,ours.VisionRadius,ours.ContactRadius,ours.speed,ours.AttackPoint,Sex);
+                            Console.WriteLine("Un ourson naît en {0}, {1}",enfant.x,enfant.y);
                             sim.AddEntity(enfant);
                             ours.pregnant = false;
                             ours.pregnancy = 0;
@@ -163,19 +165,21 @@ namespace ProjetEcosyst
                     {
                         List<Entity> list = NearbyEntities(breb, listOfEntities);
                         breb.Hunt(list, sim);
-                        if (breb.pregnancy > 5)
+                        if (breb.pregnancy > 1 && breb.pregnant == true)
                         {
                             Random rand = new Random();
                             int a  = rand.Next(0,1);
+                            string Sex;
                             if (a == 0)
                             {
-                                string Sex = "Femelle";
+                                Sex = "Femelle";
                             }
                             else
                             {
-                                string Sex = "Male";
+                                Sex = "Male";
                             }
                             Brebis enfant = new Brebis(breb.x,breb.y,breb.HP,breb.EP,0,breb.VisionRadius,breb.ContactRadius,breb.speed,Sex);
+                            Console.WriteLine("Une brebis naît en {0}, {1}", enfant.x, enfant.y);
                             sim.AddEntity(enfant);
                             breb.pregnant = false;
                             breb.pregnancy = 0;
@@ -192,6 +196,7 @@ namespace ProjetEcosyst
                 {   
                     
                     Herbe herb = (Herbe)entit;
+                    herb.lastreproduiced++;
                     List<OrganicMat> list = NearbyOrgaMat(herb, listOfEntities);
                     if (herb.EP == 0)
                     {
@@ -202,16 +207,18 @@ namespace ProjetEcosyst
                     {
                         DestroyObject(entit);
                     }
-                    if (herb.lastreproduiced > 2)
+                    else if (herb.lastreproduiced > 2)
                     {
                         herb.Reproduce(sim);
                     }
-                    herb.toage();
+                    
 
-                    if (list.Count > 0)
+                    else if (list.Count > 0)
                     {
                         herb.Eat(list[0], sim);
                     }
+                    
+                    herb.toage();
                     herb.EP--;
 
 

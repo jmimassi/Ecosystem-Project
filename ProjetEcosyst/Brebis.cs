@@ -15,23 +15,38 @@ namespace ProjetEcosyst
 
         public void Reproduce(Simulation sim,Brebis breb)
         {
+            Console.WriteLine("Cherche à se reproduire avec la brebis se trouvant en {0},{1}", breb.x, breb.y);
             if (this.Sex == "Femelle")
             {
-                if (breb.Sex == "Mâle")
+                if (breb.Sex == "Male")
                 {   
                     if(this.pregnant == false)
                     {
-                    this.pregnant == true;
-                    this.pregnancy == 0;
+                        Console.WriteLine("La brebis se reproduit et tombe enceinte");
+                        this.pregnant = true;
+                        this.pregnancy = 0;
                     }
-                    
+
+                }
+                else
+                {
+                    Console.WriteLine("Hélas la brebis est du même sexe !");
                 }
             }
             else
             {
-                if (breb.Sex == "Femelle")
+                if (breb.Sex == "Femelle" && breb.pregnant == false)
                 {
+                    Console.WriteLine("Féconde la brebis se trouvant en {0}, {1} ", breb.x, breb.y);
                     Fecond(breb);
+                }
+                else if (breb.Sex == "Femelle" && breb.pregnant == true)
+                {
+                    Console.WriteLine("Hélas son partenaire est déjà enceinte!");
+                }
+                else
+                {
+                    Console.WriteLine("Hélas son partenaire est du même sexe !");
                 }
             }
 
@@ -40,23 +55,33 @@ namespace ProjetEcosyst
         public override void Hunt(List<Entity> ListOfNearbyEntitiesForAnimal, Simulation sim)
         {
             base.Hunt(ListOfNearbyEntitiesForAnimal,sim);
-            count = ListOfNearbyEntitiesForAnimal.length;
+            int count = ListOfNearbyEntitiesForAnimal.Count;
             List<Brebis> listeOfNearbyBrebis = new List<Brebis>();
-             for (int i = 0; i < count; i++)
+            List<Plant> plants = new List<Plant>();
+            for (int i = 0; i < count; i++)
             {
                 
                 if (ListOfNearbyEntitiesForAnimal[i].GetType() == typeof(Brebis))
                 {
-                    listeOfNearbyBrebis.add((Brebis) ListOfNearbyEntitiesForAnimal[i]);
+                    if ((ListOfNearbyEntitiesForAnimal[i].x, ListOfNearbyEntitiesForAnimal[i].y) != (this.x, this.y))
+                    {
+                        listeOfNearbyBrebis.Add((Brebis)ListOfNearbyEntitiesForAnimal[i]);
+                    }
+                        
                 }
-                
+                if (ListOfNearbyEntitiesForAnimal[i].GetType() == typeof(Plant))
+                {
+                    plants.Add((Plant)ListOfNearbyEntitiesForAnimal[i]);
+                }
+
+
             }
 
-             if (listeOfNearbyBrebis.length > 0)
+             if (listeOfNearbyBrebis.Count > 0 && plants.Count == 0)
             {
-                listeOfNearbyBears.Sort(Brebis.SortByDistance());
-                int distancex = listOfNearbyBrebis[0].x - this.x;
-                int distancey = listOfNearbyBrebis[0].y - this.y;
+                listeOfNearbyBrebis.Sort(); // trier par distance
+                int distancex = listeOfNearbyBrebis[0].x - this.x;
+                int distancey = listeOfNearbyBrebis[0].y - this.y;
 
                 int pythagore = distancex * distancex + distancey * distancey;
 
@@ -66,7 +91,8 @@ namespace ProjetEcosyst
                 }
                 else
                 {
-                    Move(listOfNearbyBrebis[0]);
+                    Console.WriteLine("Se déplace vers la brebis se trouvant en {0}, {1}", listeOfNearbyBrebis[0].x, listeOfNearbyBrebis[0].y);
+                    Move(listeOfNearbyBrebis[0]);
                 }
             }
              else
