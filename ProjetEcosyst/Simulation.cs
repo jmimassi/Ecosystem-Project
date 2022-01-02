@@ -8,7 +8,6 @@ namespace ProjetEcosyst
 {
     public class Simulation
     {
-        protected int speedOfLife;
         public List<Entity> listOfEntities = new List<Entity>();
         public Simulation(List<Entity> listOfEntities)
         {
@@ -98,7 +97,7 @@ namespace ProjetEcosyst
                 {
 
                     Ours ours = (Ours)entit;
-                    Console.WriteLine("Ours se situant en : {0},{1}",ours.x,ours.y);
+                    Console.WriteLine("Ours se situant en : {0},{1}, HP : {2}, EP : {3}", ours.x,ours.y, ours.HP, ours.EP);
                     if (ours.EP == 0)
                     {
                         ours.ConvertPVToPE();
@@ -147,7 +146,7 @@ namespace ProjetEcosyst
                 {
 
                     Brebis breb = (Brebis)entit;
-                    Console.WriteLine("Brebis se situant en : {0},{1}", breb.x, breb.y);
+                    Console.WriteLine("Brebis se situant en : {0},{1}, HP : {2}, EP : {3}", breb.x, breb.y, breb.HP, breb.EP);
                     if (breb.EP == 0)
                     {
                         breb.ConvertPVToPE();

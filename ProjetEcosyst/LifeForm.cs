@@ -23,25 +23,9 @@ namespace ProjetEcosyst
             this.HP--;
             this.EP++;
         }
-
-
-        public virtual int getHP()
-        {
-            return this.HP;
-        }
-
-        public virtual int getEP()
-        {
-            return this.EP;
-        }
         public void LoseHP(int number)
         {
             this.HP -= number;
-        }
-
-        public virtual int getAge()
-        {
-            return this.age;
         }
 
         

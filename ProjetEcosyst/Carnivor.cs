@@ -100,17 +100,5 @@ namespace ProjetEcosyst
             sim.DestroyObject(meat);
         }
 
-
-
-
-
-
-
-
-
-
-        //protected Carnivore(int x, int y, int HP, int EP, int age, int VisionRadius, int ContactRadius, int speed, char Sex) : base(x, y, HP, EP, age, VisionRadius, ContactRadius, speed, Sex)
-        //{
-        //}
     }
 }
