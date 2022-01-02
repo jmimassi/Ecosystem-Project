@@ -20,7 +20,7 @@ namespace ProjetEcosyst
             int brebis = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Veuillez entrer le nombre d'herbes souhaités : ");
             int herbe = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Veuillez entrer le nombre d'updates de simulations souhaités : ");
+            Console.WriteLine("Veuillez entrer le nombre d'updates de simulations souhaitées : ");
             int clock = Convert.ToInt32(Console.ReadLine());
 
             Random random = new Random();  
