@@ -20,23 +20,17 @@ namespace ProjetEcosyst
             proie.LoseHP(AttackPoint);
         }
 
-        public  void Eat(Meat food)
-        {
-            this.EP += 5;
-            // appeller DestroyObject
-
-        }
 
         public virtual void Hunt(List<Entity> ListOfNearbyEntitiesForAnimal, Simulation sim)
         {
             Console.WriteLine("L'animal commence sa chasse");
-            int count = ListOfNearbyEntitiesForAnimal.Count; //2 listes une de viande, une d'hérbivore. 
+            int count = ListOfNearbyEntitiesForAnimal.Count; 
             List<Meat> listOfNearbyMeat = new List<Meat>();
             List<Herbivore> listOfNearbyHerbivores = new List<Herbivore>();
 
             for (int i = 0; i < count; i++)
             {
-                try { //refaire avec des typeof et gettype 
+                try {
                     
                     Meat meat = (Meat)ListOfNearbyEntitiesForAnimal[i];
                     listOfNearbyMeat.Add(meat);
@@ -80,7 +74,7 @@ namespace ProjetEcosyst
 
             else if (listOfNearbyHerbivores.Count > 0 && listOfNearbyMeat.Count == 0)
             {
-                listOfNearbyHerbivores.Sort(); // trier par distance
+                listOfNearbyHerbivores.Sort(); 
                 int distancex = listOfNearbyHerbivores[0].x - this.x;
                 int distancey = listOfNearbyHerbivores[0].y - this.y;
 
@@ -102,7 +96,7 @@ namespace ProjetEcosyst
 
         public void Eat(Meat meat, Simulation sim)
         {
-            this.EP += 2;
+            this.EP += 3;
             sim.DestroyObject(meat);
         }
 

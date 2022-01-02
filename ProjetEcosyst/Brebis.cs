@@ -79,7 +79,7 @@ namespace ProjetEcosyst
 
              if (listeOfNearbyBrebis.Count > 0 && plants.Count == 0)
             {
-                listeOfNearbyBrebis.Sort(); // trier par distance
+                listeOfNearbyBrebis.Sort(); 
                 int distancex = listeOfNearbyBrebis[0].x - this.x;
                 int distancey = listeOfNearbyBrebis[0].y - this.y;
 
