@@ -50,3 +50,6 @@ Nos classes ont comme pour seul but que de simuler leurs comportements respectif
 
 ## Dépendances :
 1) .NET 6.0
+
+
+Projet réalisé en binôme par Rayane Saïdi(195048) et Mimassi Joseph(195178).
