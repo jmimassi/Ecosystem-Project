@@ -28,7 +28,7 @@ namespace ProjetEcosyst
             {
                 int x = random.Next(0, 100);
                 int y = random.Next(0, 100);
-                int sex = random.Next(0, 1);
+                int sex = random.Next(0, 2);
                 string sexe = "";
                 if (sex == 0)
                 {
@@ -46,7 +46,7 @@ namespace ProjetEcosyst
             {
                 int x = random.Next(0, 100);
                 int y = random.Next(0, 100);
-                int sex = random.Next(0, 1);
+                int sex = random.Next(0, 2);
                 string sexe = "";
                 if (sex == 0)
                 {
