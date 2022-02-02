@@ -7,8 +7,7 @@ Pour réaliser cet écosystème, nous avons choisi d'utiliser le langage C#.
 ## Subdivision du code :
 Le but de ce code étant de créer un ensemble de classe pour simuler un écosystème, la structure de notre code s'est donc réalisé en se basant sur une arborescence de classe abstraite et d'héritage, celle-ci est détaillée dans le diagramme de classe ci-dessous :
 
-
-![diag_classe_projet](https://user-images.githubusercontent.com/78797911/147883231-0345cfb2-2dc6-449c-9cf4-0eda6c3d011d.png)
+![unknown](https://user-images.githubusercontent.com/78797921/152171464-fecb5860-2732-4166-bffb-169e0c2ccaf1.png)
 
 ## Démarrage de l'application :
 Lancer le projet sur votre IDE, le programme étant initalisé pour simuler un monde avec des ours, brebis et herbe afin de débuter la simulation, le programme vous demandera de rentrer un nombre d'ours, de brebis et d'herbe ainsi que le nombre d'update de simulation voulu, image du temps passée dans la simulation.
